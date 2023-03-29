@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Main.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ProiectLaborator</a> &gt; <a href="index.source.html" class="el_package">org.example</a> &gt; <span class="el_source">Main.java</span></div><h1>Main.java</h1><pre class="source lang-java linenums">package org.example;
+
+import java.util.Arrays;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+<span class="nc" id="L7">public class Main {</span>
+
+    /*
+    Se dau trei numere intregi a, b si c cuprinse intre 10 si 999999.
+    Sa se verifice daca cmmdc dintre suma cifrelor lui a si b este mai mare decat c.
+    Sa se verifice daca numerele a si b sunt date in ordine crescatoare.
+    Programul va intoarce un string astfel:
+     - daca a, b sau c nu sunt in intervalul mentionat se va afisa un mesaj de eroare;
+     - &quot;Cmmdc-ul sumei cifrelor primelor doua numere este/nu este mai mare decat al treilea.&quot; daca respecta sau nu prima cerinta.
+     - &quot;Primele doua numere sunt/nu sunt in ordine crescatoare.&quot; daca respecta sau nu a doua cerinta
+     */
+
+
+    static Integer cmmdc(Integer a, Integer b) {
+<span class="fc bfc" id="L21" title="All 2 branches covered.">        while(a != b) {</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">            if(a &gt; b) {</span>
+<span class="fc" id="L23">                a -= b;</span>
+            } else {
+<span class="fc" id="L25">                b -= a;</span>
+            }
+        }
+<span class="fc" id="L28">        return a;</span>
+    }
+
+    static Integer sumaCifrelor(Integer a) {
+<span class="fc" id="L32">        Integer sum = 0;</span>
+
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        while(a &gt; 0){</span>
+<span class="fc" id="L35">            sum += a % 10;</span>
+<span class="fc" id="L36">            a = a / 10;</span>
+        }
+<span class="fc" id="L38">        return sum;</span>
+
+    }
+
+    static Boolean respectaInterval(Integer a) {
+<span class="fc bfc" id="L43" title="All 4 branches covered.">        if(a &gt;= 10 &amp;&amp; a &lt;= 999999) {</span>
+<span class="fc" id="L44">            return true;</span>
+        }
+<span class="fc" id="L46">        return false;</span>
+    }
+
+    static String cerinta1(Integer a, Integer b, Integer c) {
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if(cmmdc(sumaCifrelor(a), sumaCifrelor(b)) &gt; c) {</span>
+<span class="fc" id="L51">            return &quot;Cmmdc-ul sumei cifrelor primelor doua numere este mai mare decat al treilea.&quot;;</span>
+        }
+<span class="fc" id="L53">        return &quot;Cmmdc-ul sumei cifrelor primelor doua numere nu este mai mare decat al treilea.&quot;;</span>
+    }
+
+    static String cerinta2(Integer a, Integer b) {
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        if(a &lt; b) {</span>
+<span class="fc" id="L58">            return &quot;Primele doua numere sunt in ordine crescatoare.&quot;;</span>
+        }
+<span class="fc" id="L60">        return &quot;Primele doua numere nu sunt in ordine crescatoare.&quot;;</span>
+    }
+
+    public static String[] calculeaza(Integer a, Integer b, Integer c) {
+        String[] result;
+
+<span class="fc bfc" id="L66" title="All 6 branches covered.">        if(respectaInterval(a) &amp;&amp; respectaInterval(b) &amp;&amp; respectaInterval(c)) {</span>
+<span class="fc" id="L67">            result = new String[2];</span>
+<span class="fc" id="L68">            result[0] = cerinta1(a, b, c);</span>
+<span class="fc" id="L69">            result[1] = cerinta2(a, b);</span>
+        } else {
+<span class="fc" id="L71">            result = new String[1];</span>
+<span class="fc" id="L72">            result[0] = &quot;Cel putin un numar din input nu este in intervalul dorit.&quot;;</span>
+        }
+<span class="fc" id="L74">        return result;</span>
+    }
+    public static void main(String[] args) {
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println(&quot;Introduceti valoarea lui a: &quot;);
+//        int a = scanner.nextInt();
+//
+//        System.out.println(&quot;Introduceti valoarea lui b:&quot;);
+//        int b = scanner.nextInt();
+//
+//        System.out.println(&quot;Introduceti valoarea lui c: &quot;);
+//        int c = scanner.nextInt();
+//        scanner.close();
+//
+//        System.out.println(&quot;Rezultatul este:\n&quot; + Arrays.stream(calculeaza(a, b, c)).collect(Collectors.joining(&quot;\n&quot;)));
+<span class="nc" id="L89">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
